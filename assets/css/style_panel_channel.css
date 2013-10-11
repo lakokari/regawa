@@ -1,0 +1,38 @@
+/*
+html { 
+        background: url(img/music-1.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        overflow : hidden;
+}
+
+body { margin : 0; }*/
+
+#panel {
+    border: 1px solid #fff;
+    height: 100%;
+    width: 600px;
+    background:rgba(255,255,255,0.5);
+    float: right;
+    display: none;  
+    margin-top : 0px;
+    padding-top : 150px;
+    padding-left : 30px;
+}
+#click {
+    height: 90px;
+    width: 40px;
+    float: right; 
+    margin-top: 320px;
+}
+#tag_line {
+    position : absolute;
+    z-index : -2;
+    top : 200px;
+    left : 500px;
+    width : 300px;
+    border : 1px solid #fff;
+    color : white;
+}

@@ -1,0 +1,89 @@
+/* 
+    Document   : gallery_nav
+    Created on : 11 Sep 13, 10:26:49
+    Author     : 3wicaksono
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+
+#galleryNav,
+#galleryNav ul {
+    list-style: none;
+}
+#galleryNav {
+    float: left;
+}
+#galleryNav > li {
+    float: left;
+}
+#galleryNav li a {
+    display: block;
+    height: auto;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#galleryNav ul {
+    position: absolute;
+    display: none;
+    z-index: 999;
+}
+#galleryNav ul li a {
+    width: auto;
+    text-transform: capitalize;
+    font-size: 11px;
+    font-weight: bold;
+}
+#galleryNav li:hover ul {
+    display: block;
+    width: auto;
+    min-width: 150px;
+}
+
+
+/* Main menu
+------------------------------------------*/
+#galleryNav {
+    font-family: Arial;
+    font-size: 15px;
+    padding-left: 0;
+    margin: 0;
+    padding: 0;
+}
+#galleryNav > li > a {
+    color: #717171;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#galleryNav > li:hover > a, #galleryNav li a.current {
+    color: #d31821;
+}
+
+#galleryNav li a.sort_down, a.sort_down {
+    color: #d31821;
+    background: url('img/icon-arrow-down.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+#galleryNav li a.sort_up, a.sort_up {
+    color: #d31821;
+	width:60px;
+    background: url('img/icon-arrow-up.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+ 
+/* Submenu
+------------------------------------------*/
+#galleryNav ul {
+    background: #4a4a4a;
+    padding-left: 0px;
+}
+#galleryNav ul li a {
+    color: #fff;
+}
+#galleryNav ul li:hover a , #galleryNav ul li a.current{
+    background: #323232;
+    color : #fff;
+}

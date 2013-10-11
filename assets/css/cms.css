@@ -1,0 +1,57 @@
+/* 
+    Document   : cms
+    Created on : Jun 27, 2013, 1:01:40 PM
+    Author     : master
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+@font-face { font-family: ws; src: url('../fonts/WSansNew-Book.otf'); } 
+@font-face { font-family: ws; font-weight: bold; src: url('../fonts/WSansNew-Bold.otf'); }
+
+body{font-family: ws, Arial, Helvetica, sans-serif;}
+
+.navbar .nav>.active>a, .navbar .nav>.active>a:hover, .navbar .nav>.active>a:focus, .navbar .nav>li>a {color: #fff;}
+.navbar .nav>li>a {padding:10px 5px 10px;}
+.navbar-inner{
+    background-color: #fafafa;
+    background-image: -moz-linear-gradient(top,#E21C24,#961C24);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#E21C24),to(#961C24));
+    background-image: -webkit-linear-gradient(top,#E21C24,#961C24);
+    background-image: -o-linear-gradient(top,#E21C24,#961C24);
+    background-image: linear-gradient(to bottom,#E21C24,#961C24);
+    background-repeat: repeat-x;
+}
+
+/* ajax loader */
+.ajax-loader-small{
+    float:none; margin:auto; padding:0; 
+    background:url('img/ajax-loader-small.gif') no-repeat center; 
+    width:16px; height:16px; display:inline-block;
+    margin-top:1px;
+    *margin-right: .3em;
+    line-height: 16px;
+    vertical-align: text-top;
+}
+.ajax-loader {float:none; margin:auto; background:url('img/ajax-loader.gif') no-repeat center; min-width:32px; min-height:32px; display:none;}
+.loader-bg {
+    background: url('img/loader-bg.png') repeat;
+    display: none;
+    width: 800px;
+    height: 600px;
+    float: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.loader {
+    float: left;
+    width: 31px;
+    height: 31px;
+    background: url('img/ajax-loader.gif') center no-repeat;
+    z-index: 10000;
+}

@@ -1,0 +1,30 @@
+/* 
+    Document   : slider_home
+    Created on : Jun 28, 2013, 10:32:35 PM
+    Author     : 3wicaksono
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#slider_container_3 { float: left; padding: 0; width: 815px; }
+
+.SliderName_3 {
+	float: left;
+	width: 815px;
+	height: 240px;
+	overflow: hidden;
+}
+
+.SliderName_3Description {
+	padding: 10px;
+	font-family: Tahoma,Arial,Helvetica;
+	font-size: 14px;
+	line-height: 30px;
+	letter-spacing: 1px;
+	text-align: center;
+	color: #ffffff;
+	text-shadow: 0 1px 3px #000000;
+}
+
+
+

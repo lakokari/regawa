@@ -1,0 +1,89 @@
+/* 
+    Document   : tabbed_content
+    Created on : Jun 28, 2013, 11:37:35 AM
+    Author     : 3wicaksono
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+ul.tabs {
+    height: 17px;
+    padding: 7px 0;
+    font-size: 0;
+    margin:0;
+    list-style-type: none;
+    text-align: left; /*set to left, center, or right to align the tabs as desired*/
+    border : 1px solid #fff;
+}
+
+ul.tabs li {
+    display: inline;
+    margin: 0;
+    margin-right:15px; /*distance between tabs*/
+}
+
+ul.tabs li a {
+    font: normal 12px Verdana;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    padding: 7px 16px;
+    color: #fff;
+}
+
+ul.tabs li a:visited {
+    color: #fff;
+}
+
+ul.tabs li a:hover {
+    border: 1px solid #B7B7B7;
+    background:#3EAAED;
+}
+
+ul.tabs li.selected a {
+    /*selected tab style */
+    position: relative;
+    top: 0px;
+    font-weight:bold;
+    font-size: 14px;
+    color : white;
+    background:#3EAAED;
+}
+
+
+ul.tabs li.selected a:hover {
+    /*selected tab style */
+    text-decoration: none;
+}
+
+div.tabcontent {
+    display: block;
+    height : auto;
+}
+
+div.tabcontents {
+    padding: 10px;
+    color : #fff;
+    font-size: 12px;
+}
+
+div.tabcontents a{
+    color : #fff;
+    text-decoration: none;
+}
+div.tabcontents a:hover{
+    color : #fff;
+    text-decoration: underline;
+}
+
+.tabcontent table{
+    margin:0;
+    padding:0;
+    border:0;
+    border-spacing:0;
+}
+
+.tabcontents table th {
+    color :white;
+}

@@ -1,0 +1,192 @@
+body {
+	font-family: 'Open Sans Condensed','Arial Narrow', serif;
+	margin: 0px auto 0px auto; text-align: center;
+}
+
+div#main {	
+    background-color: #FFFFFF; 
+    text-align: left; 
+    width: 835px;
+	margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#background-header {
+	width: 100%;
+	background: #125eac; 
+    height: 45px;
+	background: #F00 url(images/menu_bg.png) repeat-x;
+	position: relative;	
+}
+
+#header {
+	position: relative;	
+	width: 920px;
+    height: 45px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* ----------- MENU -------------- */
+.f-menu-container{
+	background: #F00 url(images/menu_bg.png) repeat-x;
+	width:100%;
+	height:45px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	cursor: default;
+}
+
+#menubar {
+    position: absolute;
+	top: 0px;
+	left: 110px;
+	width:80%
+}
+
+#menubar ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    overflow:none;/*Hide the overflow */
+}
+
+
+#menubar li {
+	float:left;
+}
+
+#menubar ul li a:link,#menubar ul li a:visited {
+	color: #fff;
+    display:block;
+    min-width:70px;
+	height: 45px;
+    font-weight:bold;
+    text-align:center;
+    text-decoration:none;
+    text-transform:uppercase;
+    padding:10px 0px;
+}
+ 
+#menubar ul li a:hover,#menubar ul li a:active, #menubar ul li a.current {
+    background:#999999 url(images/current_page_bg.png) repeat-x;
+	height: 25px;
+    -webkit-transition:background .2s ease-in ;
+    -moz-transition:background .2s ease-in ;
+    transition:background .2s ease-in ;
+}
+
+#menubar ul li a:hover{
+    -moz-opacity:0.90;
+    -khtml-opacity:0.90;
+    filter:alpha(opacity=90%);
+    opacity:0.90;
+}
+
+#menubar ul li a:active {
+    -webkit-box-shadow:inset 1px 1px 1px 1px #188989;
+    -moz-box-shadow:inset 1px 1px 1px 1px #188989;
+    box-shadow:inset 1px 1px 1px 1px #188989;
+    color:#fff;
+    opacity:0.85;
+    -moz-opacity:0.85;
+    -khtml-opacity:0.85;
+    filter:alpha(opacity=85%);
+    -webkit-transition:all .2s cubic-bezier .1s;
+    -moz-transition:all .2s cubic-bezier .1s;
+    transition:all .2s cubic-bezier .1s;
+    top:12px;
+}
+
+
+
+/* ----------- end of menu -------------- */
+
+#coverstory-home {
+	background : url(images/cover-home.jpg) no-repeat;
+	width: 800px;
+	height: 300px;
+	
+}
+
+#title-cover {
+	width : 400px;
+	height: 250px;
+	float: right;
+	padding : 20px;
+}
+
+#title-cover h1{
+	color: #ed1c24;
+	font-size : 18px;
+}
+
+#title-cover p{
+	color: #000;
+	font-size : 12px;
+}
+
+.logo-uzone {
+	background: url(images/logo.png) no-repeat;
+	width: 85px;
+	height: 75px;
+	position:absolute;
+	top: 15px;
+	left: 20px;
+	cursor: default;
+	z-index:0;
+}
+.logo-search {
+	background: url(images/icon_search.png) no-repeat;
+	width: 45px;
+	height: 45px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: default;
+}
+
+#signin {
+	height: 45px;
+	min-width:70px;
+	position: absolute;
+	top: 0px;
+	right: 50px;
+	cursor: default;
+}
+
+#signin a {
+	color: #fff;
+    display:block;
+    min-width:70px;
+	height: 45px;
+    font-weight:bold;
+    text-align:center;
+    text-decoration:none;
+    text-transform:uppercase;
+    padding:10px 0px;
+}
+
+#signin a:hover, #signin a:active, #signin a.current {
+    background:#999999 url(images/current_page_bg.png) repeat-x;
+	height: 25px;
+    -webkit-transition:background .2s ease-in ;
+    -moz-transition:background .2s ease-in ;
+    transition:background .2s ease-in ;
+}
+
+
+
+#footer {
+	width: 100%;
+	background: #125eac; 
+    height: 25px;
+	background: #F00 url(images/menu_bg.png) repeat-x;
+	position: relative;	
+}
+ 
+ 
+

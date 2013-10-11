@@ -1,0 +1,578 @@
+<?php
+
+/**
+ * Description of music
+ *
+ * @author master
+ */
+class Music extends U_CMS_Controller {
+    function __construct() {
+        parent::__construct();
+        
+        $this->data['active_menu'] = 'music';
+    }
+    
+    public function index($page=0, $limit=10){
+        //load model music category
+        $this->load->model('music/category');
+        
+        $this->data['page_title'] = 'Music Category';
+        
+        //start creating data list
+        $offset = $page * $limit;
+        $total_records = $this->category->get_count();
+        $total_pages = ceil($total_records / $limit);
+        
+        $this->data['page_offset'] = $offset;
+        $this->data['page_url'] = site_url('cms/music/index/%i');
+        $this->data['page_total'] =$total_pages;
+        
+        $this->data['data'] = $this->category->get_offset('*',NULL,$offset,$limit);
+        
+        
+        $this->data['subview'] = 'cms/channels/music/category/list';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+    
+    public function category($page=0,$limit=10){
+        $this->index($page, $limit);
+    }
+    public function genre($categoryId=0)
+    {
+        //load model music category
+        $this->load->model('music/genre');
+        
+        $this->data['page_title'] = 'Music Genres';
+        
+        //load category for dropdown category
+        $this->load->model('music/category');
+        
+        $this->data['category'] = $this->category->get();
+        //select default category if !categoryId
+        if (!$categoryId&&count($this->data['category'])){
+            $temp = $this->data['category'][0];
+            $categoryId = $temp->genreId;
+        }
+        //create dropdown category
+        $options = array();
+        foreach($this->data['category'] as $item){
+            //create dropwn options
+            $options [$item->genreId] = $item->genreName;
+        }
+        $this->data['options'] = $options;
+        $this->data['categoryId'] = $categoryId;
+        
+        $this->data['subview'] = 'cms/channels/music/genre/list';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+    
+    public function album($categoryId=0)
+    {
+        //load model music category
+        $this->load->model('music/album');
+        
+        $this->data['page_title'] = 'Music Album';
+        
+        //load category for dropdown category
+        $this->load->model('music/category');
+        $this->data['category'] = $this->category->get();
+        //select default category if !categoryId
+        if (!$categoryId&&count($this->data['category'])){
+            $temp = $this->data['category'][0];
+            $categoryId = $temp->genreId;
+        }
+        //create dropdown category
+        $catoptions = array();
+        foreach($this->data['category'] as $item){
+            //create dropwn options
+            $catoptions [$item->genreId] = $item->genreName;
+        }
+        $this->data['catoptions'] = $catoptions;
+        $this->data['categoryId'] = $categoryId;        
+        
+        $this->data['subview'] = 'cms/channels/music/album/list';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+    
+    public function song($categoryId=0)
+    {
+        //load model music category
+        $this->load->model('music/song');
+        
+        $this->data['page_title'] = 'Music Song List';
+        
+        //load category for dropdown category
+        $this->load->model('music/category');
+        $this->data['category'] = $this->category->get();
+        //select default category if !categoryId
+        if (!$categoryId&&count($this->data['category'])){
+            $temp = $this->data['category'][0];
+            $categoryId = $temp->genreId;
+        }
+        //create dropdown category
+        $catoptions = array();
+        foreach($this->data['category'] as $item){
+            //create dropwn options
+            $catoptions [$item->genreId] = $item->genreName;
+        }
+        $this->data['catoptions'] = $catoptions;
+        $this->data['categoryId'] = $categoryId;        
+        
+        $this->data['subview'] = 'cms/channels/music/song/list';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+    
+    public function songmod($categoryId=0)
+    {
+        //load model music category
+        $this->load->model('music/category');
+        
+        $this->data['page_title'] = 'Music Song Mode';
+        
+        //load category for dropdown category
+        $this->load->model('music/category');
+        $this->data['category'] = $this->category->get_select_where('genreId,genreName');
+        //select default category if !categoryId
+        if (!$categoryId&&count($this->data['category'])){
+            $temp = $this->data['category'][0];
+            $categoryId = $temp->genreId;
+        }
+        //create dropdown category
+        $catoptions = array();
+        foreach($this->data['category'] as $item){
+            //create dropwn options
+            $catoptions [$item->genreId] = $item->genreName;
+        }
+        $this->data['catoptions'] = $catoptions;
+        $this->data['categoryId'] = $categoryId;        
+        
+        $this->data['subview'] = 'cms/channels/music/song/songmod';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+        
+    public function artist()
+    {   
+        $this->data['page_title'] = 'Music Artists';
+        
+        $this->data['subview'] = 'cms/channels/music/artist/list';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+    
+    public function sync($which='category')
+    {
+        //load Melon API library
+        $this->load->library('syncronize/Syncmusic');
+        $ML = $this->syncmusic;
+        
+        $result = null;
+        
+        switch($which){
+                
+            case 'category':
+            default:
+                $result = $ML->category();
+                break;
+        }
+        redirect('cms/music/'.$which);
+    }
+    
+	public function category_edit($id=NULL){
+        $this->load->model('music/category');
+        // Set form
+        $rules = $this->category->rules;
+        $this->form_validation->set_rules($rules);
+        
+        //Process Form
+        if ($this->form_validation->run() == TRUE) {
+            // We can login and redirect
+            $data_post = $this->category->array_from_post(array('genreid','ordernum','genrename'));
+            
+            if ($this->category->save($data_post, $id) == TRUE) {
+                redirect('cms/music/category');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan data cetegory');
+            }
+		
+        }
+        
+        $this->data['page_title'] = 'Music Category Edit';
+        if ($id){
+            $this->data['channel'] = $this->category->get($id);
+		}else{
+            $this->data['channel'] = $this->category->get_new();
+			
+		}
+        
+        //Load view
+        $this->data['active_menu'] = 'music';
+        $this->data['subview'] = 'cms/channels/music/category/edit';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+	public function category_delete($id=NULL){
+		$this->load->model('music/category');
+        if ($id)
+            $this->category->delete($id);
+            
+        redirect('cms/music/category');
+    }
+
+	public function genre_edit($id=NULL){
+        $this->load->model(array('music/genre','music/category'));
+        // Set form
+        $rules = $this->genre->rules;
+        $this->form_validation->set_rules($rules);
+        
+        //Process Form
+        if ($this->form_validation->run() == TRUE) {
+            // We can login and redirect
+            $data_post = $this->genre->array_from_post(array('categoryid','genreid','ordernum','genrename'));
+            
+            if ($this->genre->save($data_post, $id) == TRUE) {
+                redirect('cms/music/genre');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan data genre');
+            }
+		
+        }
+        
+        $this->data['page_title'] = 'Music Genre Edit';
+        if ($id){
+            $this->data['channel'] = $this->genre->get($id);
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+		}else{
+            $this->data['channel'] = $this->genre->get_new();
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+		}
+        
+        //Load view
+        $this->data['active_menu'] = 'music';
+        $this->data['subview'] = 'cms/channels/music/genre/edit';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+	public function genre_delete($id=NULL){
+		$this->load->model('music/genre');
+        if ($id)
+            $this->genre->delete($id);
+            
+        redirect('cms/music/genre');
+    }
+	public function album_edit($id=NULL){
+        $this->load->model(array('music/album','music/song','music/category'));
+        // Set form
+        $rules = $this->album->rules;
+        $this->form_validation->set_rules($rules);
+		
+        //Process Form
+        if ($this->form_validation->run() == TRUE) {
+            // We can login and redirect
+			$field=$this->album->get_fields();
+			unset($field[0]);
+			foreach($field as $r){
+				$ff[]=$r;
+			}
+            $data_post = $this->album->array_from_post($ff);
+            if ($this->album->save($data_post, $id) == TRUE) {
+                redirect('cms/music/album');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan data album');
+            }
+		
+        }
+        
+        $this->data['page_title'] = 'Music Album Edit';
+        if ($id){
+            $this->data['channel'] = $this->album->get_by(array('id'=>$id), true);
+			//print_r($this->data['channel']);exit;
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+			$items=$this->song->get_by(array('albumId'=>$this->data['channel']->albumId));
+			for($i=0;$i<count($items);$i++){
+				$this->data['items2'][$items[$i]->songId]=$items[$i]->songName;
+			}
+		}else{
+            $this->data['channel'] = $this->album->get_new();
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+			$items=$this->song->get_by(array('albumId'=>$this->data['channel']->albumId));
+			for($i=0;$i<count($items);$i++){
+				$this->data['items2'][$items[$i]->songId]=$items[$i]->songName;
+			}
+		}
+        
+        //Load view
+        $this->data['active_menu'] = 'music';
+        $this->data['subview'] = 'cms/channels/music/album/edit';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+	public function album_delete($id=NULL){
+		$this->load->model('music/album');
+        if ($id)
+            $this->album->delete($id);
+            
+        redirect('cms/music/album');
+    }
+
+	public function song_edit($id=NULL){
+        $this->load->model(array('music/song','music/category'));
+        // Set form
+        $rules = $this->song->rules;
+        $this->form_validation->set_rules($rules);
+		
+        //Process Form
+        if ($this->form_validation->run() == TRUE) {
+            // We can login and redirect
+			$field=$this->song->get_fields();
+			unset($field[0]);
+			foreach($field as $r){
+				$ff[]=$r;
+			}
+            $data_post = $this->song->array_from_post($ff);
+            if ($this->song->save($data_post, $id) == TRUE) {
+                redirect('cms/music/song');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan data song');
+            }
+		
+        }
+        
+        $this->data['page_title'] = 'Music Song Edit';
+        if ($id){
+            $this->data['channel'] = $this->song->get_by(array('id'=>$id), true);
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+		}else{
+            $this->data['channel'] = $this->song->get_new();
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+		}
+        
+        //Load view
+        $this->data['active_menu'] = 'music';
+        $this->data['subview'] = 'cms/channels/music/song/songedit';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+	public function song_delete($id=NULL){
+		$this->load->model('music/song');
+        if ($id)
+            $this->song->delete($id);
+            
+        redirect('cms/music/song');
+    }
+
+	public function songmode_edit($id=NULL){
+        $this->load->model(array('music/song','music/songmod'));
+        // Set form
+        $rules = $this->songmod->rules;
+        $this->form_validation->set_rules($rules);
+		
+        //Process Form
+        if ($this->form_validation->run() == TRUE) {
+            // We can login and redirect
+			$field=$this->songmod->get_fields();
+			unset($field[0]);
+			foreach($field as $r){
+				$ff[]=$r;
+			}
+            $data_post = $this->songmod->array_from_post($ff);
+            if ($this->songmod->save($data_post, $id) == TRUE) {
+                redirect('cms/music/songmod');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan data song');
+            }
+		
+        }
+        
+        $this->data['page_title'] = 'Music Songmode Edit';
+        if ($id){
+			$sql="select * from uz_music_songmod where id='$id'";
+			$data=$this->db->query($sql);
+            $this->data['channel'] = $data->row();
+		}else{
+            $this->data['channel'] = $this->songmod->get_new();
+		}
+        
+        //Load view
+        $this->data['active_menu'] = 'music';
+        $this->data['subview'] = 'cms/channels/music/song/songmode_edit';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+    function getsongid(){
+		$this->allow_get_array = TRUE;
+        $like = $this->input->get('term'); 
+        
+        //load album model
+        $this->load->model('music/song');
+        $fields=array('field' => 'CONCAT(songName, songId )','value'=>$like);
+			$result = $this->song->get_like($fields, 'CONCAT(songName, songId ) as label, songId as value', 0, 100);
+            
+            $datalist = array();
+			$i=0;
+            foreach($result as $item){
+				$this->_result[$i]['label'] = $item->label;
+				$this->_result[$i]['value'] = $item->value;
+				$i++;
+            }
+			if(count($result)==0) $this->_result[0]=array('label'=>'','value'=>'No data');
+		echo json_encode($this->_result);
+        
+    }
+	public function songmode_delete($id=NULL){
+		$this->load->model('music/songmod');
+        if ($id)
+            $this->songmod->delete($id);
+            
+        redirect('cms/music/songmod');
+    }
+
+	public function artist_edit($id=NULL){
+        $this->load->model(array('music/artist','music/category','music/genre'));
+        // Set form
+        $rules = $this->artist->rules;
+        $this->form_validation->set_rules($rules);
+		
+        //Process Form
+        if ($this->form_validation->run() == TRUE) {
+            // We can login and redirect
+			$field=$this->artist->get_fields();
+			unset($field[0]);
+			foreach($field as $r){
+				$ff[]=$r;
+			}
+            $data_post = $this->artist->array_from_post($ff);
+			$data_post['birthday']=strtotime($data_post['birthday']);
+			$data_post['deathday']=strtotime($data_post['deathday']);
+			$data_post['debutDay']=strtotime($data_post['debutDay']);
+			//print_r($data_post);exit;
+            if ($this->artist->save($data_post, $id) == TRUE) {
+                redirect('cms/music/artist');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan data song');
+            }
+		
+        }
+        
+        $this->data['page_title'] = 'Music Artist Edit';
+        if ($id){
+			$this->data['channel'] = $this->artist->get_by(array('id'=>$id), true);
+			$genre = $this->genre->get_by(array('genreId'=>$this->data['channel']->genreId), true);
+			$this->data['channel']->categoryId=$genre->categoryId;
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+		}else{
+            $this->data['channel'] = $this->artist->get_new();
+			$this->data['channel']->categoryId='';
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+		}
+        
+        //Load view
+        $this->data['active_menu'] = 'music';
+        $this->data['subview'] = 'cms/channels/music/artist/edit';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+	public function artist_delete($id=NULL){
+		$this->load->model('music/artist');
+        if ($id)
+            $this->artist->delete($id);
+            
+        redirect('cms/music/artist');
+    }
+	
+	public function lyric($categoryId=0)
+    {
+        //load model music category
+        
+        $this->data['page_title'] = 'Music Lyric List';
+        
+        //load category for dropdown category
+        $this->load->model('music/category');
+        $this->data['category'] = $this->category->get();
+        //select default category if !categoryId
+        if (!$categoryId&&count($this->data['category'])){
+            $temp = $this->data['category'][0];
+            $categoryId = $temp->genreId;
+        }
+        //create dropdown category
+        $catoptions = array();
+        foreach($this->data['category'] as $item){
+            //create dropwn options
+            $catoptions [$item->genreId] = $item->genreName;
+        }
+        $this->data['catoptions'] = $catoptions;
+        $this->data['categoryId'] = $categoryId;        
+        
+        $this->data['subview'] = 'cms/channels/music/song/list';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+
+	public function lyric_edit($id=NULL){
+        $this->load->model(array('music/song','music/category'));
+        // Set form
+        $rules = $this->song->rules;
+        $this->form_validation->set_rules($rules);
+		
+        //Process Form
+        if ($this->form_validation->run() == TRUE) {
+            // We can login and redirect
+			$field=$this->song->get_fields();
+			unset($field[0]);
+			foreach($field as $r){
+				$ff[]=$r;
+			}
+            $data_post = $this->song->array_from_post($ff);
+            if ($this->song->save($data_post, $id) == TRUE) {
+                redirect('cms/music/song');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan data song');
+            }
+		
+        }
+        
+        $this->data['page_title'] = 'Music Song Edit';
+        if ($id){
+            $this->data['channel'] = $this->song->get_by(array('id'=>$id), true);
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+		}else{
+            $this->data['channel'] = $this->song->get_new();
+			$items=$this->category->get();
+			for($i=0;$i<count($items);$i++){
+				$this->data['items'][$items[$i]->genreId]=$items[$i]->genreName;
+			}
+		}
+        
+        //Load view
+        $this->data['active_menu'] = 'music';
+        $this->data['subview'] = 'cms/channels/music/song/songedit';
+        $this->load->view('cms/_layout_main', $this->data);
+    }
+	public function lyric_delete($id=NULL){
+		$this->load->model('music/song');
+        if ($id)
+            $this->song->delete($id);
+            
+        redirect('cms/music/song');
+    }
+}
+
+?>

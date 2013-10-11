@@ -1,0 +1,131 @@
+/* 
+    Document   : style_slide_item_wow
+    Created on : 06 Sep 13, 19:31:44
+    Author     : 3wicaksono
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.myslider1{
+    width: 100%;
+    height: 123px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    float : left;
+    padding-top: 10px;
+}
+.myslider1 a, .myslider1 a:active, .myslider2 a, .myslider2 a:active{
+    color : #000;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.myslider1 a:hover, .myslider2 a:hover{
+    color : #000;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+
+.container-item {
+    width : 578px;
+    height: 123px;
+    float : left;
+    margin-right: 5px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+.slide1{
+    min-height: 123px;
+    float: left;
+}
+.slide1 img{
+    width: 81px;
+    height: 79px;
+    margin-bottom: 44px;
+    float: left;
+}
+
+img.rounded{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+#myslider-content{
+    float: left; min-width: 100%; width: auto; 
+}
+
+
+.photo-pic {
+    width: 81px;
+    height: 79px;
+    margin-bottom: 44px;
+    float: left;
+}
+
+.news-container {
+    float: left;
+    width: 487px;
+    height: 123px;
+    margin-left: 10px;
+}
+
+.slider-title-news {
+    width: 100%;
+    height: auto;
+    float : left;
+    color : #fff;
+}
+
+.slider-title-news a, .slider-desc-news a{
+    color : #d41b20;
+    text-decoration: none;
+}
+
+.slider-title-news a:hover, .slider-desc-news a:hover{
+    color : #d41b20;
+    text-decoration: underline;
+}
+
+.slider-date-news {
+    width: 100%;
+    height: auto;
+    float : left;
+    color : #979797;
+    font-size: 12px;
+    font-weight: normal;
+}
+.slider-desc-news {
+    width: 100%;
+    height: auto;
+    float : left;
+    color : #979797;
+    font-size: 13px;
+    font-weight: normal;
+    border-bottom: 1px solid #2e2f30;
+    margin-bottom: 10px;
+}
+.slider-nav-twit {
+    width: 100%;
+    height: auto;
+    float : left;
+    color : #979797;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+a.nav-twit-item {
+    float: right;
+    width: auto;
+    height: auto;
+    color : #d41b20;
+    text-decoration: none;
+    margin-right: 10px;
+}
+a.nav-twit-item:hover {
+    color : #d41b20;
+    text-decoration: underline;
+}

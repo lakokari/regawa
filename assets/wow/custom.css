@@ -1,0 +1,275 @@
+/* 
+    Document   : custom
+    Created on : 28 Agu 13, 18:24:55
+    Author     : 3wicaksono
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.page {
+    width: 100%;
+    height: auto;
+    background: #f0f0f0 url("images/bg-page.png") repeat-x top left;
+    float: left;
+}
+.footer-container {
+    width: 100%;
+    height: auto;
+    float: left;
+}
+
+.content-container {
+    width: 1160px;
+    padding: 35px 0 35px 0;
+    margin: 0 auto;
+}
+
+.left-container {
+    width: 250px;
+    min-height: 100px;
+    float: left;
+    margin-bottom: 35px;
+}
+.wrap-container {
+    width: 40px;
+    min-height: 100px;
+    float: left;
+    margin-bottom: 35px;
+}
+.right-container {
+    width: 870px;
+    min-height: 100px;
+    float: left;
+    margin-bottom: 35px;
+    color : #333;
+}
+
+.right-container p {
+    color : #333;
+}
+
+.close-panel {
+    font-size: 20px;
+    color : #000;
+    font-weight: bold;
+}
+
+#gallery {
+    width: 100%;
+    min-height: 100px;
+    float: left;
+    margin-bottom: 35px;
+}
+
+/* ----- =NAVIGATION ------ */
+.nav-container {
+    width: 250px;
+    height: auto;
+    margin-left: 44px;
+    margin-right: 36px;
+    float: left;    
+}
+
+#nav {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0px;
+    float: left;
+}
+
+#nav ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    overflow:none;
+}
+
+
+#nav li {
+    float:left;
+}
+
+#nav ul li a:link,#nav ul li a:visited {
+    color: #333;
+    display: block;
+    min-width:250px;
+    height: 13px;
+    font-weight:bold;
+    font-size: 13px;
+    text-align:left;
+    text-decoration:none;
+    padding:15px 0px 15px 0px;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+#nav ul li a:hover,#nav ul li a:active, #nav ul li a.current {
+    color : #cd1726;
+    display: block;
+    min-width:250px;
+    height: 13px;
+    font-weight:bold;
+    font-size: 13px;
+    text-align:left;
+    text-decoration:none;
+    padding:15px 0px 15px 0px;
+    border-bottom: 1px solid #cdcdcd;
+    -webkit-transition:background .2s ease-in ;
+    -moz-transition:background .2s ease-in ;
+    transition:background .2s ease-in ;
+}
+
+#nav ul li a:active {
+
+    color:#000;
+
+}
+/* ----- enf of navigation ------ */
+
+.full-width-container {
+    float : left;
+    width: 100%;
+    height: auto;
+}
+.title-big-container {
+    color : #333;
+    font-size: 25px;
+    width: auto;
+    float: left;
+    margin-bottom: 20px;
+}
+.title-big-container.red {
+    color : #d7181f;
+}
+
+.title-gallery {
+    font-size: 20px;
+    width: auto;
+    height: auto;
+    float: left;
+    color :#333;
+}
+.showall-gallery {
+    color : #d7181f;
+    font-size: 15px;
+    font-weight: bold;
+    width: auto;
+    height: auto;
+    float: right;
+}
+.showall-gallery a {
+    color : #d7181f;
+    text-decoration: none;
+}
+.showall-gallery a:hover {
+    color : #d7181f;
+    text-decoration: underline;
+}
+
+.gallery-container {
+    width: 200px;
+    max-height: 400px;
+    float: left;
+    margin-top: 20px;
+    margin-right: 17px;
+    position : relative;
+    color :#333;
+}
+
+.gallery-thumb-container {
+    width: 200px;
+    height: 150px;
+    float: left;
+    background : #000;
+    position : relative;
+}
+
+.gallery-play-button {
+    width : 200px;
+    height : 150px;
+    background : url(images/gallery_play_button.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    position : absolute;
+    z-index : 99;
+    top: 0px;
+    left: 0px;
+    opacity: 0.5;
+}
+.gallery-play-button:hover {
+    width : 200px;
+    height : 150px;
+    background : url(images/gallery_play_button.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    position : absolute;
+    z-index : 99;
+    top: 0px;
+    left: 0px;
+    opacity: 1;
+}
+.gallery-thumb-container img {
+    display : block;
+    max-width: 100%;
+    max-height: 100%;
+    margin : auto auto;
+}
+.gallery-share-container {
+    width: 100%;
+    height: 20px;
+    float: left;
+    padding : 15px 0 15px 0;
+    border-bottom: 1px solid #dbdbdb;
+    color :#333;
+}
+.gallery-tittle-container {
+    width: 100%;
+    height: 35px;
+    padding-top: 10px;
+    float :left;
+    color :#333;
+    font-weight : bold;
+}
+.gallery-description-container {
+    width: 100%;
+    height : auto;
+    float : left;
+    color :#333;
+}
+
+/* bootstrap style custom */
+.btn.btn-mini.like, .btn.btn-mini.unlike {
+    border-radius: 5px;
+    background: #0088CC;
+    padding : 2px;
+    border : 1px solid #ccc;
+}
+.icon-thumbs-up-2, .icon-thumbs-down-2 {
+    color : #fff;
+}
+.like-num {
+    color : #333;
+}
+
+.button-list {
+    display: block;
+    width: 542px;
+    height: auto;
+    margin: auto;
+    margin-top: 200px;
+}
+
+/*  user status */
+
+.name-user {
+	width : auto;
+	height: auto;
+	float : left;
+}
+	
+.avatar-user {
+	width : 30px;
+	height : 30px;
+	float : right;
+	padding: 7px 10px;
+}

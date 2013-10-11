@@ -1,0 +1,155 @@
+/* 
+    Document   : tabbed_content
+    Created on : Jun 28, 2013, 11:37:35 AM
+    Author     : 3wicaksono
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+ul.tabs {
+    /*padding: 7px 0;*/
+    padding:4px 0;
+    font-size: 0;
+    margin:0;
+    list-style-type: none;
+    text-align: left; /*set to left, center, or right to align the tabs as desired*/
+    /*background: #fff url(img/bg_container_tab.png) repeat-x;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border : 1px solid #c0c3c8;*/
+    border:1px solid #c0c3c8;
+    border-radius:5px;
+}
+
+ul.tabs li {
+    display: inline;
+    margin: 0;
+    margin-right:15px; /*distance between tabs*/
+    text-align: center;
+}
+
+ul.tabs li a {
+    font: normal 12px Verdana;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    padding-left: 20px;
+    
+    top:3px;
+    color:#797979;
+    text-align: center;
+    /*border: 1px solid #CCC;
+    border-bottom-color:#B7B7B7;
+    color: #000;
+    background: #F0F0F0 url(img/tabbg.gif) 0 0 repeat-x;
+    border-radius: 2px 2px 0 0;
+    outline:none;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px;*/
+}
+
+ul.tabs li a:visited {
+    color: #000;
+}
+ul.tabs li.selected a{
+    padding:9px 13px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0){
+    ul.tabs li.selected a{
+        padding:9px 13px;
+    }
+}
+
+ul.tabs li a:hover {
+    /*border: 1px solid #B7B7B7;
+    background:#F0F0F0 url(img/tabbg.gif) 0 -36px repeat-x;*/
+}
+
+ul.tabs li.selected a {
+    /*selected tab style 
+    position: relative;
+    top: 0px;
+    font-weight:bold;
+    color : white;
+    background: url(img/bg_tab_selected.png);
+    border: 1px solid #B7B7B7;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px;*/
+    background:#797979;
+    color:#fff;
+}
+
+
+ul.tabs li.selected a:hover {
+    /*selected tab style */
+    text-decoration: none;
+}
+
+div.tabcontent {
+    display: block;
+    min-height: 250px;
+    width:auto;
+}
+
+div.tabcontents {
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:#FFF;
+    border-radius: 0 2px 2px 2px;
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.noborder{
+    border:none !important;
+}
+.tabcontent h3{
+    color:#797979;
+    font:normal 13px Verdana;
+}
+.tabcontent, .tabcontent a{
+    color:#797979;
+    font:normal 13px Verdana;
+}
+.panorama .panorama-sections .panorama-section.radio-songlist div#buy-album{
+    position:relative;
+    top:-10px;
+    height:27px !important;
+}
+

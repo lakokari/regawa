@@ -1,0 +1,79 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Description of QBook
+ * API to acces QBaca books data
+ *
+ * @author master
+ */
+
+class Useetv {
+    
+    protected $_api_url = 'http://cms.useetv.com/uzone-api?';
+    protected $_format = 'array';
+    public $imageUrl = 'http://cms.useetv.com/files/images/';
+    
+    function __construct($format='array') {
+        $this->_format = $format;
+    }
+    
+    /**
+     * List All channel TV
+     * 
+     * @return array
+     */
+    
+    public function tv_channels () {
+        $result = file_get_contents($this->_api_url.'req=channels');
+        return  $this->_output($result);
+    }
+    
+    /**
+     * Get Stream TV
+     * 
+     * @return array
+     */
+    
+    /*public function get_streaming_tv($streamType = 'live', $tvCode = '') {
+        $result = file_get_contents($this->_api_url.'req=streamurl&streamtype='.$streamType.'&'.'tvcode='.$tvCode);
+        die(var_dump($result));
+        return  $this->_output($result);
+    }*/
+    
+    public function get_schedules_tv($tvCode, $date) {
+        $result = file_get_contents($this->_api_url.'req=schedules&tvcode='.$tvCode.'streamtype='.$streamType.'&date='.$date);
+        return  $this->_output($result);
+    }
+    
+    public function video_on_demand () {
+        $result = file_get_contents($this->_api_url.'req=vod');
+        return  $this->_output($result);
+    }
+
+    public function tv_on_demand ($tv, $date) {
+        $result = file_get_contents($this->_api_url.'req=schedules&tvcode='.$tv.'&date='.$date);
+        return  $this->_output($result);
+    }
+    
+    /**
+     * Helper function to output return value format
+     * @param mix $data
+     * @return mix
+     */
+    public function _output($data){
+        if ($this->_format=='json')
+            return $data;
+        else
+            return json_decode ($data, TRUE);
+    }
+    
+    public function getImageUrl(){
+        return $this->imageUrl;
+    }
+    
+    public function setImageUrl($imgUrl) {
+        $this->imageUrl = $imgUrl;
+    }
+}
+
+?>

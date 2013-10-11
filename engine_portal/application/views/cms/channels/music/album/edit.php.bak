@@ -1,0 +1,108 @@
+<link rel="stylesheet" type="text/css" media="screen"
+     href="<?php echo config_item('assets_url'); ?>css/datepicker.css">
+
+
+    <script type="text/javascript"
+     src="<?php echo config_item('assets_url'); ?>js/bootstrap-datepicker.js"></script>
+<section id="title-page">
+    <div class="container-fluid">
+        <h1><?php echo $page_title;?></h1>
+    </div>
+</section>
+
+<!-- if any errors -->
+<?php if(validation_errors() || $this->session->flashdata('error')){?>
+<section id="update-error">
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <?php echo validation_errors(); ?>
+        <strong><?php echo $this->session->flashdata('error');?></strong>
+    </div>
+</section>
+<?php }?>
+<section id="main-page">
+    <div class="container-fluid">
+        <?php echo form_open_multipart();?>
+        <?php $this->table->set_template($table_tmpl);?>
+		<?php $this->table->add_row('Category ID',  form_dropdown('categoryId', $items, $channel->categoryId));?>
+		<?php $this->table->add_row('Genre ID',  form_dropdown('genreId', array(''=>'- Pilih Genre -')));?>
+		<?php $this->table->add_row('Album ID',  form_input('albumId', set_value('albumId',$channel->albumId)));?>
+		<?php $this->table->add_row('Album Name',  form_input('albumName', set_value('albumName',$channel->albumName)));?>
+		<?php $this->table->add_row('Series No',  form_input('seriesNo', set_value('seriesNo',$channel->seriesNo)));?>
+		<?php $this->table->add_row('Issue Date',  form_input('issueDate', set_value('issueDate',$channel->issueDate), "class='datepicker'"));?>
+		<?php $this->table->add_row('Adult',  form_dropdown('adultYN', array('Y'=>'Y', 'N'=>'N'), $channel->adultYN));?>
+		<?php $this->table->add_row('Main Artist',  form_dropdown('mainArtistId'));?>
+		<?php $this->table->add_row('Main Song',  form_dropdown('mainSongId', $items2, $channel->mainSongId));?>
+		<?php $this->table->add_row('albumLImgPath',  form_input('albumLImgPath', set_value('albumLImgPath',$channel->albumLImgPath), "class='input-xlarge'"));?>
+		<?php $this->table->add_row('albumSImgPath',  form_input('albumSImgPath', set_value('albumSImgPath',$channel->albumSImgPath), "class='input-xlarge'"));?>
+		<?php $this->table->add_row('albumMImgPath',  form_input('albumMImgPath', set_value('albumMImgPath',$channel->albumMImgPath), "class='input-xlarge'"));?>
+        <?php $this->table->add_row(
+                form_submit('submit', 'Save', 'class="btn btn-primary"').' '. 
+                form_button('cancel','Cancel','class="btn btn-primary" onclick="window.location=\''.  site_url('/cms/music/category').'\';"'),''
+              );
+        ?>
+        
+        <?php echo $this->table->generate();?>
+        <?php echo form_close();?>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function(){
+        $('.datepicker').datepicker({
+			format: 'yyyy-mm-dd'
+		}).on('changeDate', function(ev) {
+			$(this).val($(this).val().replace(/-/g,''));
+		});
+        $('select[name=categoryId]').change(function(){
+            loadGenreByCategory($(this).val());
+        });
+		$('select[name=categoryId]').trigger('change');
+		$('select[name=genreId]').change(function(){
+            loadArtistByGenre($(this).val());
+        });
+    });
+
+	function loadGenreByCategory(categoryId){
+        $.post("<?php echo site_url('ajax/cms');?>",{func:'get_genre_by_category',categoryId:categoryId},function(result){
+            var data = jQuery.parseJSON(result);
+            $('select[name=genreId]').html('');
+			 var s='';
+            if (data['size']>0){
+                var start = parseInt(data['start']);
+                for(var i in data['items']){
+                    var d = data['items'][i];
+                    s += "<option value='"+d['genreId']+"'";
+					if("<?php echo $channel->genreId?>"==d['genreId']) s+="selected='selected'";
+					s +=">"+d['genreName']+"</option>";
+
+                }
+            }else{
+				 s += '<option value="">- Pilih Category -</option>';
+			}
+			$('select[name=genreId]').append(s);
+			$('select[name=genreId]').trigger('change');
+            $('div#pagination').html(data['pagination']);
+        });
+    }
+	function loadArtistByGenre(genreId){
+        $.post("<?php echo site_url('ajax/cms');?>",{func:'get_artist_by_genre',genreId:genreId},function(result){
+            var data = jQuery.parseJSON(result);
+			 var s;
+            if (data['size']>0){
+                var start = parseInt(data['start']);
+                for(var i in data['items']){
+                    var d = data['items'][i];
+                    s += "<option value='"+d['artistId']+"'";
+					if("<?php echo $channel->mainArtistId?>"==d['artistId']) s+="selected='selected'";
+					s +=">"+d['artistName']+"</option>";
+                }
+            }else{
+				 s += '<option value="">- Pilih Artist -</option>';
+			}
+			$('select[name=mainArtistId]').html(s);
+            $('div#pagination').html(data['pagination']);
+        });
+    }
+	
+</script>

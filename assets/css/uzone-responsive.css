@@ -1,0 +1,52 @@
+/* 
+    Document   : uzone-responsive
+    Created on : Jun 22, 2013, 1:57:54 PM
+    Author     : master
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+@media screen and(max-width: 985px){
+    .container-fluid > .left-container {display: none;}
+    .container-fluid > .right-container { width: 95%; margin-left:10px;}
+    
+    .container-fluid > .right-container .box ul li{min-width:30px;}
+}
+
+@media screen and(max-width: 800px){
+    .frame{width: 100%;}
+    #channel-container ul li {width:25%;}
+    #channel-container ul li > img {width: 100%; }
+    
+    /* hide u-logo */
+    #sec-logo {display: none;}
+    
+    /* resize everything in the .box class */
+    img {width: 100%;}
+    .hide-815{display: none;}
+    
+    /* hide menu  and show the button control*/
+    menu > ul {display: none;}
+    menu > ul >li {
+        width:97%;padding:0 2px 0 2px;
+        background-color: #313131;
+        text-indent: 10px;
+    }
+    menu > #btn-menu-show {display: block;}
+}
+
+
+
+@media screen and(max-width: 490px){
+    #side-left {float: left; width:100%;}
+    #side-right {float: left; width: 100%;}
+    .box {border-top: solid 1px #cecece; padding-top: 5px;}
+    .row-fluid{width: 100%; padding-left:0; padding-right: 0;}
+    
+    .hide-490{display: none;}
+}
+

@@ -1,0 +1,90 @@
+/* 
+    Document   : cool_menu
+    Created on : 09 Sep 13, 12:04:19
+    Author     : 3wicaksono
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.submenu-bg {
+    background: #1c1c1c;
+    width: 100%;
+    height: 45px;
+    float: left;
+    position: absolute;
+    top: 158px;
+    display: none;
+}
+
+#coolMenu,
+#coolMenu ul {
+    list-style: none;
+}
+#coolMenu {
+    float: left;
+}
+#coolMenu > li {
+    float: left;
+}
+#coolMenu li a {
+    display: block;
+    height: 42px;
+    line-height: 3em;
+    padding: 0 1.5em;
+    text-decoration: none;
+}
+#coolMenu ul {
+    position: absolute;
+    display: none;
+    z-index: 9;
+}
+#coolMenu ul li a {
+    width: auto;
+}
+#coolMenu li:hover ul {
+    display: block;
+    width: 650px;
+}
+
+.coolmenu-container:hover .submenu-bg {
+    display:  block;
+}
+
+/* Main menu
+------------------------------------------*/
+#coolMenu {
+    font-family: Arial;
+    font-size: 15px;
+    background: #d51e1a;
+    padding-left: 0;
+    margin: 0;
+    padding: 0;
+}
+#coolMenu > li > a {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#coolMenu > li:hover > a, #coolMenu li a.current {
+    background: #1c1c1c;
+    color: #fff;
+    height: 43px;
+}
+ 
+/* Submenu
+------------------------------------------*/
+#coolMenu ul {
+    background: #1c1c1c;
+    padding-left: 0px;
+    border : 1px solid #1c1c1c;
+}
+#coolMenu ul li a {
+    color: #fff;
+    float: left;
+}
+#coolMenu ul li:hover a , #coolMenu ul li a.current{
+    background: #1c1c1c;
+    color : #fff;
+    height: 40px;
+    border-bottom: 2px solid #d41e1a;
+}

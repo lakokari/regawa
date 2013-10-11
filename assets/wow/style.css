@@ -1,0 +1,206 @@
+/*
+
+CSS for WoW Competition Channel UZone
+by Sandi Mardiansyah - www.metranet.co.id
+
+*/
+
+body {
+	margin:0 auto;
+	/*background:url(images/body-bg.gif) right top repeat-y;*/
+}
+
+* { font-family:Arial, Helvetica, sans-serif; color:#999; font-size:12px; }
+
+#content { width:1160px; margin:0 auto; }
+
+/* Header */
+#content #header { margin:0 auto; width:1160px; float:left; height:auto; padding:10px 0px; border-bottom:1px solid #ececec; }
+#content #header .logo { float:left; }
+#content #header .logo span.main { float:left; }
+#content #header .logo span.sub{ float:left; }
+#content #header .welcome { float: right; margin: 45px 0 0; padding: 10px 0px; }
+#content #header .welcome span { padding:10px 0px; }
+#content #header .welcome a.profile { background:url(images/profile_bg.png) center left no-repeat; padding:10px 0 0 30px; }
+
+/* Menu */
+#menu { float:left; width:100%; padding:10px 0px; }
+#navbar { float: left; margin: 0; padding: 5px 0; width: 84%; }
+#navbar li { list-style: none; float: left; width:16%; margin-right:12px; }
+#navbar li a { display: block; color: #666; text-decoration: none; font-size:16px; font-family:Arial, Helvetica, sans-serif; background:url(images/dropdown_menu.png) right center no-repeat; }
+#navbar li ul { display: none; width: 150px; background:#fff;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+        z-index: 999;
+ }
+#navbar li:hover ul { display: block; position: absolute; margin: 0; padding: 0; }
+#navbar li:hover li { float: none; background-color:#d31821; padding:5px 10px; }
+#navbar li:hover li a { color: #666; }
+#navbar li li a:hover { }
+#navbar li:hover ul, #navbar li.hover ul { display: block; position: absolute; margin: 0; padding: 0; }
+#navbar li:hover li, #navbar li.hover li { float: none; }
+#navbar li:hover li a, #navbar li.hover li a { color: #333; padding:3px 0px; font-size:12px; }
+ul#navbar li ul li { width:100% !important; }
+#navbar li:hover li,ul#navbar li:hover li:hover {background-color:#d31821;}
+
+/* Slider */
+#slider { float:left; width:100%; }
+#slider-code { height: 400px; /*overflow:hidden;*/ }
+#slider-code .viewport { float: left; width: 1160px; height: 400px; overflow: hidden; position: relative; z-index:-1; }
+#slider-code .buttons { display: /*block*/ none; margin: 30px 10px 0 0; float: left; }
+#slider-code .next { margin: 30px 0 0 10px;  }
+#slider-code .disable { visibility: hidden; }
+#slider-code .overview { list-style: none; padding: 0; margin: 0;  position: absolute; left: 0; top: 0; }
+#slider-code .overview li{ float: left; margin: 0 20px 0 0; padding: 0px; height: 400px; border: 0px solid #dcdcdc; width: 1160px;}
+
+#slider-code .pager {
+    background: none repeat scroll 0 0 transparent;
+    clear: both;
+    float: left;
+    font-weight: normal !important;
+    list-style: none outside none;
+    margin: -8px 0 0;
+    overflow: hidden;
+    padding: 0;
+	width:100%;
+}
+
+#slider-code .pager li { float: left; }
+#slider-code .pagenum { background-color: transparent; text-decoration: none; text-align: center; padding: 5px; color: #555555; font-size: 13px; font-weight: normal; display: block; font-family:Arial, Helvetica, sans-serif; font-size:16px; }
+#slider-code .pager li a{ padding:15px 15px; }
+#slider-code .active { color: #333; background:url(images/pager-active.png) top center no-repeat; padding:10px 0px; }
+
+/* CONTENT BOTTOM */
+#bottom { width:100%; min-height:450px; background:#fff url(images/bottom-bg.gif) repeat-x top left; float:left; }
+#bottom #boxes { width:1160px; margin:0 auto; }
+#bottom #boxes .box { width:100%; float:left; padding:40px 0px; }
+#bottom #boxes .box .kotak-1 {
+	border-right: 1px solid #CCCCCC;
+	float: left;
+	padding: 0 14px 0 0;
+	padding: 0 15px 0 0;
+	width: 255px;
+	margin-right: 10px;
+}
+#bottom #boxes .box .kotak-2 {
+    border-right: 1px solid #CCCCCC;
+    float: left;
+    padding: 0 16px;
+    width: 255px;
+}
+#bottom #boxes .box .kotak-3 {
+    border-right: 1px solid #CCCCCC;
+    float: left;
+    padding: 0 16px;
+    width: 255px;
+}
+#bottom span { float:left; width:100%; }
+#bottom span.title { float:left; width:100%; font-size:15px; margin:5px 0px; border-bottom:3px solid #ccc; padding:5px 0px;  }
+#bottom span.title span.icon {
+    border-right: 1px solid #CCCCCC;
+    float: left;
+    padding: 8px 10px;
+    width: 10%;
+}
+#bottom span.title span.text {
+    float: left;
+    font-size: 20px;
+    padding: 8px 10px;
+    width: 73%;
+	color:#d31821;
+	font-weight:100;
+}
+
+#bottom span.deskripsi {
+    color: #333333;
+    float: left;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 5px 0;
+    width: 100%;
+	text-align:justify;
+}
+
+a.more{ font-weight:bold; color:#d31821; text-decoration:none; }
+
+#bottom #boxes .box .kotak-4 {
+    border-right: 0 solid #CCCCCC;
+    float: left;
+    padding: 0 0 0 20px;
+    width: 251px;
+}
+#bottom #boxes .box .kotak-4 span.isi{ float:left; border:1px solid #ccc; background:#e8c5c6; padding:20px;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+ }
+#bottom #boxes .box .kotak-4 span.isi span.judul{
+    background: url("images/tips-bg.png") no-repeat scroll left center transparent;
+    color: #D31821;
+    float: left;
+    font-size: 25px;
+    padding: 10px 0 10px 55px;
+    width: 78%;
+}
+
+ #bottom #boxes .box .kotak-4 span.isi span.desc {
+    color: #333333;
+    float: left;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 10px 0;
+    width: 100%;
+	text-align:justify;
+}
+
+/* FOOTER */
+#footer {
+    float: left;
+    padding: 0px 0;
+    width: 100%;
+}
+
+#footer .copy{ float:left; padding: 15px 0; }
+#footer .logotelkom{ float:right; }
+
+/*SLIDING MENU */
+a#right-menu { position:fixed; margin-left:20px; margin-top:150px; }
+
+/* POP UP */
+#element_to_pop_up { 
+    background-color:#fff;
+    color:#000;
+    display:none; 
+    padding:20px;
+    min-width:635px;
+    min-height: 500px;
+	margin-top:50px;
+}
+#element_upload { 
+    background-color:#fff;
+    color:#000;
+    display:none; 
+    padding:20px;
+    min-width:635px;
+    min-height: 500px;
+	margin-top:50px;
+}
+.b-close{
+    cursor:pointer;
+    position:absolute;
+    right:10px;
+    top:5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+button { border:none; padding:0px; margin:0px; background:none; cursor:pointer; }
+#menu span { padding:0px; margin:0px; }
+.b-modal { cursor:default; }
+
+.pop-up-title { border-bottom:1px solid #ccc; padding:10px 0 10px 35px; font-size:20px; background:url(images/upload_icon.png) center left no-repeat; color:#d31821; }
+
+.iframes { border:none; width:100%; min-height:500px; }

@@ -1,0 +1,19 @@
+/* 
+    Document   : wall-themes-camera
+    Created on : 10 Sep 13, 11:46:52
+    Author     : master
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    background: #000 url('img/background-movie.jpg');
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100% auto;
+    background-attachment:fixed;
+    margin : 0;
+    padding: 0;
+}
+
+
